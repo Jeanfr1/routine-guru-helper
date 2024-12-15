@@ -1,3 +1,4 @@
+@import url('https://rsms.me/inter/inter.css');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -25,13 +26,35 @@
     --ring: 262 85% 74%;
     --radius: 0.75rem;
   }
-}
- 
-@layer base {
+
   * {
-    @apply border-border;
+    @apply border-border antialiased;
   }
+
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply bg-background text-foreground font-sans;
   }
+
+  /* Smooth scrolling for the whole app */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Better button and input focus states */
+  button, input, select, textarea {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-200;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-secondary;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary/50 rounded-full hover:bg-primary/70 transition-colors;
 }

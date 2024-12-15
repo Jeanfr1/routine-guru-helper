@@ -8,7 +8,6 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if user is already logged in
     supabase.auth.onAuthStateChange((event, session) => {
       if (session) {
         navigate("/");
@@ -17,24 +16,46 @@ const Login = () => {
   }, [navigate]);
 
   return (
-    <div className="min-h-screen bg-secondary flex items-center justify-center p-4">
-      <div className="w-full max-w-md bg-white rounded-lg shadow-md p-6">
-        <h1 className="text-2xl font-bold text-center mb-6">Welcome to Routine Manager</h1>
-        <Auth
-          supabaseClient={supabase}
-          appearance={{
-            theme: ThemeSupa,
-            variables: {
-              default: {
-                colors: {
-                  brand: '#6366f1',
-                  brandAccent: '#4f46e5',
+    <div className="min-h-screen bg-gradient-to-br from-[#D3E4FD] to-[#FFDEE2] flex items-center justify-center p-4 animate-gradient-x">
+      <div className="w-full max-w-md transform transition-all duration-300 hover:scale-[1.02]">
+        <div className="bg-white/80 backdrop-blur-lg rounded-2xl shadow-xl p-8 animate-fade-in">
+          <h1 className="text-3xl font-bold text-center mb-2 bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent">
+            Welcome Back
+          </h1>
+          <p className="text-center text-gray-600 mb-8">
+            Sign in to manage your tasks effectively
+          </p>
+          <Auth
+            supabaseClient={supabase}
+            appearance={{
+              theme: ThemeSupa,
+              variables: {
+                default: {
+                  colors: {
+                    brand: 'rgb(155, 135, 245)',
+                    brandAccent: 'rgb(139, 112, 243)',
+                    brandButtonText: 'white',
+                  },
+                  borderWidths: {
+                    buttonBorderWidth: '0px',
+                    inputBorderWidth: '1px',
+                  },
+                  radii: {
+                    borderRadiusButton: '8px',
+                    buttonBorderRadius: '8px',
+                    inputBorderRadius: '8px',
+                  },
                 },
               },
-            },
-          }}
-          providers={[]}
-        />
+              className: {
+                button: 'hover:scale-[1.02] transition-transform duration-200',
+                container: 'gap-4',
+                input: 'transition-all duration-200 focus:ring-2 focus:ring-primary/20',
+              },
+            }}
+            providers={[]}
+          />
+        </div>
       </div>
     </div>
   );
