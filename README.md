@@ -2,7 +2,7 @@
 
 A modern, elegant task management application built with React and Supabase. Organize your daily activities with style and efficiency.
 
-![Task Manager Preview](public/og-image.png)
+
 
 ## ✨ Features
 
@@ -100,4 +100,4 @@ If you found this project helpful, please consider giving it a star ⭐️
 
 ---
 
-Built with ❤️ using [Lovable](https://lovable.dev)
+Built with ❤️ URL [routineguruhelper](https://lovable.dev](https://routineguruhelper.netlify.app/login))
