@@ -1,81 +1,111 @@
-import { Auth } from "@supabase/auth-ui-react";
-import { ThemeSupa } from "@supabase/auth-ui-shared";
-import { supabase } from "@/integrations/supabase/client";
-import { useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useToast } from "@/components/ui/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useToast } from "@/hooks/use-toast";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  useEffect(() => {
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((event, session) => {
-      if (event === 'SIGNED_IN' && session) {
-        navigate("/");
-      }
-      if (event === 'USER_UPDATED' && session) {
-        navigate("/");
-      }
-      // Handle signup error
-      if (event === 'SIGNED_UP.ERROR') {
-        const error = session as any; // Type assertion for error handling
-        if (error?.error?.message?.includes('User already registered')) {
-          toast({
-            title: "Account Already Exists",
-            description: "Please sign in instead of creating a new account.",
-            variant: "destructive",
-          });
-        }
-      }
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
     });
 
-    return () => subscription.unsubscribe();
-  }, [navigate, toast]);
+    if (error) {
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive",
+      });
+    } else {
+      navigate("/");
+    }
+    setLoading(false);
+  };
+
+  const handleSignUp = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+    });
+
+    if (error) {
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive",
+      });
+    } else {
+      toast({
+        title: "Success!",
+        description: "Check your email to confirm your account.",
+      });
+    }
+    setLoading(false);
+  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#D3E4FD] to-[#FFDEE2] flex items-center justify-center p-4 animate-gradient-x">
-      <div className="w-full max-w-md transform transition-all duration-300 hover:scale-[1.02]">
-        <div className="bg-white/80 backdrop-blur-lg rounded-2xl shadow-xl p-8 animate-fade-in">
-          <h1 className="text-3xl font-bold text-center mb-2 bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent">
-            Welcome Back
-          </h1>
-          <p className="text-center text-gray-600 mb-8">
-            Sign in to manage your tasks effectively
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8">
+        <div>
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            Task Manager Pro
+          </h2>
+          <p className="mt-2 text-center text-sm text-gray-600">
+            Sign in or create an account
           </p>
-          <Auth
-            supabaseClient={supabase}
-            appearance={{
-              theme: ThemeSupa,
-              variables: {
-                default: {
-                  colors: {
-                    brand: 'rgb(155, 135, 245)',
-                    brandAccent: 'rgb(139, 112, 243)',
-                    brandButtonText: 'white',
-                  },
-                  borderWidths: {
-                    buttonBorderWidth: '0px',
-                    inputBorderWidth: '1px',
-                  },
-                  radii: {
-                    borderRadiusButton: '8px',
-                    buttonBorderRadius: '8px',
-                    inputBorderRadius: '8px',
-                  },
-                },
-              },
-              className: {
-                button: 'hover:scale-[1.02] transition-transform duration-200',
-                container: 'gap-4',
-                input: 'transition-all duration-200 focus:ring-2 focus:ring-primary/20',
-              },
-            }}
-            providers={[]}
-          />
         </div>
+        <form className="mt-8 space-y-6">
+          <div className="rounded-md shadow-sm space-y-4">
+            <Input
+              type="email"
+              placeholder="Email address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <Input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="flex gap-4">
+            <Button
+              type="submit"
+              onClick={handleLogin}
+              disabled={loading}
+              className="relative w-full justify-center"
+            >
+              Sign in
+            </Button>
+            <Button
+              type="button"
+              onClick={handleSignUp}
+              disabled={loading}
+              variant="outline"
+              className="relative w-full justify-center"
+            >
+              Sign up
+            </Button>
+          </div>
+        </form>
       </div>
     </div>
   );
