@@ -100,4 +100,4 @@ If you found this project helpful, please consider giving it a star ⭐️
 
 ---
 
-Built with ❤️ URL [routineguruhelper](https://lovable.dev](https://routineguruhelper.netlify.app/login))
+Built with ❤️ URL [routineguruhelper](https://routineguruhelper.netlify.app/login)
