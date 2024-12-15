@@ -1,84 +1,103 @@
-# Welcome to your Lovable project
+# ✨ Task Manager Pro
 
-## Project info
+A modern, elegant task management application built with React and Supabase. Organize your daily activities with style and efficiency.
 
-**URL**: https://lovable.dev/projects/baf68edf-1fdd-4f45-8106-ca322606602e
+![Task Manager Preview](public/og-image.png)
 
-## How can I edit this code?
+## ✨ Features
 
-There are several ways of editing your application.
+- **📝 Intuitive Task Management**: Create, edit, and delete tasks with ease
+- **🎯 Priority Levels**: Organize tasks by priority (High, Medium, Low)
+- **⏰ Task Scheduling**: Set dates and times for your tasks
+- **✅ Progress Tracking**: Mark tasks as complete and track your productivity
+- **🎨 Modern UI**: Beautiful, responsive design with smooth animations
+- **🔐 Secure Authentication**: Powered by Supabase for reliable user management
 
-**Use Lovable**
+## 🚀 Quick Start
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/baf68edf-1fdd-4f45-8106-ca322606602e) and start prompting.
+Get up and running in minutes:
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
+```bash
+# Clone the repository
 git clone <YOUR_GIT_URL>
 
-# Step 2: Navigate to the project directory.
+# Navigate to project directory
 cd <YOUR_PROJECT_NAME>
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Install dependencies
+npm install
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start development server
 npm run dev
 ```
 
-## Deployment Instructions
+## 🛠️ Built With
 
-### Deploy to Netlify
+- **Frontend Framework**: [React](https://reactjs.org/) with [TypeScript](https://www.typescriptlang.org/)
+- **UI Components**: [shadcn/ui](https://ui.shadcn.com/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Backend & Auth**: [Supabase](https://supabase.com/)
+- **Build Tool**: [Vite](https://vitejs.dev/)
 
-1. Create a new site on Netlify:
-   - Go to [Netlify](https://app.netlify.com)
+## 🌐 Deployment
+
+### Netlify Deployment
+
+1. **Create a New Site**
+   - Visit [Netlify](https://app.netlify.com)
    - Click "Add new site" > "Import an existing project"
    - Connect to your Git provider and select this repository
 
-2. Configure the build settings:
-   - Build command: `npm run build`
-   - Publish directory: `dist`
-   - These settings are already configured in the `netlify.toml` file
+2. **Configure Build Settings**
+   ```toml
+   Build command: npm run build
+   Publish directory: dist
+   ```
 
-3. Environment Variables:
-   - In your Netlify site settings, go to "Site settings" > "Environment variables"
-   - Add the following environment variables:
-     - `VITE_SUPABASE_URL`: Your Supabase project URL
-     - `VITE_SUPABASE_ANON_KEY`: Your Supabase anonymous key
+3. **Environment Variables**
+   Add these in your Netlify site settings:
+   - `VITE_SUPABASE_URL`
+   - `VITE_SUPABASE_ANON_KEY`
 
-4. Deploy:
-   - Netlify will automatically deploy your site
-   - Any future pushes to the main branch will trigger automatic deployments
+4. **Deploy**
+   - Your site will be live at `your-app-name.netlify.app`
+   - Set up a custom domain in Netlify settings if desired
 
-Your site will be live at a Netlify-generated URL (e.g., `your-app-name.netlify.app`). You can customize this domain in the Netlify settings.
+## 🔧 Development
 
-## What technologies are used for this project?
+### Project Structure
 
-This project is built with:
+```
+src/
+├── components/     # Reusable UI components
+├── hooks/         # Custom React hooks
+├── pages/         # Application pages/routes
+├── types/         # TypeScript type definitions
+└── utils/         # Utility functions
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-- Supabase (Backend & Authentication)
+### Available Scripts
 
-## How can I deploy this project?
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
 
-You can either:
-1. Open [Lovable](https://lovable.dev/projects/baf68edf-1fdd-4f45-8106-ca322606602e) and click on Share -> Publish
-2. Follow the Netlify deployment instructions above
+## 🤝 Contributing
 
-## I want to use a custom domain - is that possible?
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-Yes! If you deploy with Netlify, you can set up a custom domain in your Netlify site settings. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🌟 Support
+
+If you found this project helpful, please consider giving it a star ⭐️
+
+---
+
+Built with ❤️ using [Lovable](https://lovable.dev)
