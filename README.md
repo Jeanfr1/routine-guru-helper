@@ -36,34 +36,49 @@ npm i
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## Deployment Instructions
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Deploy to Netlify
 
-**Use GitHub Codespaces**
+1. Create a new site on Netlify:
+   - Go to [Netlify](https://app.netlify.com)
+   - Click "Add new site" > "Import an existing project"
+   - Connect to your Git provider and select this repository
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+2. Configure the build settings:
+   - Build command: `npm run build`
+   - Publish directory: `dist`
+   - These settings are already configured in the `netlify.toml` file
+
+3. Environment Variables:
+   - In your Netlify site settings, go to "Site settings" > "Environment variables"
+   - Add the following environment variables:
+     - `VITE_SUPABASE_URL`: Your Supabase project URL
+     - `VITE_SUPABASE_ANON_KEY`: Your Supabase anonymous key
+
+4. Deploy:
+   - Netlify will automatically deploy your site
+   - Any future pushes to the main branch will trigger automatic deployments
+
+Your site will be live at a Netlify-generated URL (e.g., `your-app-name.netlify.app`). You can customize this domain in the Netlify settings.
 
 ## What technologies are used for this project?
 
-This project is built with .
+This project is built with:
 
 - Vite
 - TypeScript
 - React
 - shadcn-ui
 - Tailwind CSS
+- Supabase (Backend & Authentication)
 
 ## How can I deploy this project?
 
-Simply open [Lovable](https://lovable.dev/projects/baf68edf-1fdd-4f45-8106-ca322606602e) and click on Share -> Publish.
+You can either:
+1. Open [Lovable](https://lovable.dev/projects/baf68edf-1fdd-4f45-8106-ca322606602e) and click on Share -> Publish
+2. Follow the Netlify deployment instructions above
 
 ## I want to use a custom domain - is that possible?
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+Yes! If you deploy with Netlify, you can set up a custom domain in your Netlify site settings. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
