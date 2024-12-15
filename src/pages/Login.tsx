@@ -3,17 +3,37 @@ import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { supabase } from "@/integrations/supabase/client";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "@/components/ui/use-toast";
 
 const Login = () => {
   const navigate = useNavigate();
+  const { toast } = useToast();
 
   useEffect(() => {
-    supabase.auth.onAuthStateChange((event, session) => {
-      if (session) {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === 'SIGNED_IN' && session) {
         navigate("/");
       }
+      if (event === 'USER_UPDATED' && session) {
+        navigate("/");
+      }
+      // Handle signup error
+      if (event === 'SIGNED_UP.ERROR') {
+        const error = session as any; // Type assertion for error handling
+        if (error?.error?.message?.includes('User already registered')) {
+          toast({
+            title: "Account Already Exists",
+            description: "Please sign in instead of creating a new account.",
+            variant: "destructive",
+          });
+        }
+      }
     });
-  }, [navigate]);
+
+    return () => subscription.unsubscribe();
+  }, [navigate, toast]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#D3E4FD] to-[#FFDEE2] flex items-center justify-center p-4 animate-gradient-x">
