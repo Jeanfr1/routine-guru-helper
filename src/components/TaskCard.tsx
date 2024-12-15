@@ -1,6 +1,6 @@
 import { Task } from "@/types/task";
 import { cn } from "@/lib/utils";
-import { CheckCircle, Circle } from "lucide-react";
+import { CheckCircle, Circle, Clock } from "lucide-react";
 
 interface TaskCardProps {
   task: Task;
@@ -45,6 +45,12 @@ const TaskCard = ({ task, onComplete }: TaskCardProps) => {
             </h3>
             {task.description && (
               <p className="text-sm text-gray-600">{task.description}</p>
+            )}
+            {task.scheduled_time && (
+              <div className="flex items-center gap-1 text-sm text-gray-500 mt-1">
+                <Clock className="h-4 w-4" />
+                <span>{task.scheduled_time}</span>
+              </div>
             )}
           </div>
         </div>

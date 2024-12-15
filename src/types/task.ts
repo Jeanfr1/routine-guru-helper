@@ -7,4 +7,5 @@ export interface Task {
   priority: Priority;
   completed: boolean;
   date: string;
+  scheduled_time?: string | null;
 }

@@ -20,6 +20,7 @@ const AddTaskForm = ({ onAddTask }: AddTaskFormProps) => {
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState<Priority>("medium");
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
+  const [time, setTime] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,11 +31,13 @@ const AddTaskForm = ({ onAddTask }: AddTaskFormProps) => {
       description,
       priority,
       date,
+      scheduled_time: time || null,
     });
 
     setTitle("");
     setDescription("");
     setPriority("medium");
+    setTime("");
   };
 
   return (
@@ -67,6 +70,13 @@ const AddTaskForm = ({ onAddTask }: AddTaskFormProps) => {
           value={date}
           onChange={(e) => setDate(e.target.value)}
           className="flex-1"
+        />
+        <Input
+          type="time"
+          value={time}
+          onChange={(e) => setTime(e.target.value)}
+          className="flex-1"
+          placeholder="Schedule time"
         />
       </div>
       <Button type="submit" className="w-full bg-primary hover:bg-primary-dark">
